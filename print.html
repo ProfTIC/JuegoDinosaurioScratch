@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Juego dinosaurio Scratch</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Juego dinosaurio Scratch</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="1-preparando-los-personajes-y-el-escenario"><a class="header" href="#1-preparando-los-personajes-y-el-escenario">1. Preparando los personajes y el escenario</a></h1>
+<p>En esta sección vamos a aprender a personalizar el escenario y los personajes que necesitamos para construir nuestro juego. Este libro es una guía, por lo que tendréis que modificar la apariencia de todo el juego a vuestro gusto. Por ejemplo, podemos cambiar los edificios por otro tipo de obstáculo.</p>
+<ul>
+<li><a href="Capítulo1.html#personajes">Personajes</a></li>
+<li><a href="Capítulo1.html#fondo">Fondo</a></li>
+<li><a href="Capítulo1.html#entregaFase1">Qué tenemos que entregar</a></li>
+</ul>
+<h2 id="11-personajes"><a class="header" href="#11-personajes"><a name="personajes"> 1.1 Personajes</a></a></h2>
+<p>Necesitaremos los siguientes personajes o <i>sprites</i>:</p>
+<ul>
+<li><a href="Capítulo1.html#dinosaurio">Dinosaurio </a></li>
+<li><a href="Capítulo1.html#edificio">Edificio</a></li>
+<li><a href="Capítulo1.html#obstaculos">Obstáculos</a></li>
+</ul>
+<p>Vamos a ver cómo se crearían cada uno de ellos:</p>
+<h2 id="dinosaurio"><a class="header" href="#dinosaurio"><a name="dinosaurio"> Dinosaurio</a></a></h2>
+<p>Utilizaremos uno de los dinosaurios que ya trae precargado Scratch. En concreto, el dinosaurio4. Lo agregamos a la escena y ajustamos su tamaño:</p>
+<center>
+<figure>
+<img src="img/Dinosaurio.png"/>
+<figcaption>Insertamos el personaje del dinosaurio en la escena</figcaption>
+</figure>
+</center>
+<h2 id="edificio"><a class="header" href="#edificio"><a name="edificio"> Edificio</a></a></h2>
+<p>En este caso usaremos el personaje <i>buildings</i> para los edificios. Al igual que con el dinosaurio ajustamos el tamaño:</p>
+<center>
+<figure>
+<img src="img/Edificio.png"/>
+<figcaption>Insertamos el edificio en la escena</figcaption>
+</figure>
+</center>
+<h2 id="obstáculos"><a class="header" href="#obstáculos"><a name="obstaculos">Obstáculos </a></a></h2>
+<p>En el manual vamos a utilizar el personaje del murciélago (<i>bat</i>):</p>
+<center>
+<figure>
+<img src="img/Obstaculo.png"/>
+<figcaption>Insertamos el obstáculo en la escena</figcaption>
+</figure>
+</center>
+<h2 id="12-fondo"><a class="header" href="#12-fondo"><a name="fondo"> 1.2. Fondo</a></a></h2>
+<p>Cambiamos el fondo del escenario y ponemos el de <i>Wall1</i>:</p>
+<center>
+<figure>
+<img src="img/EscenariosPersonajes.png"/>
+<figcaption>Escenario y personajes del juego</figcaption>
+</figure>
+</center>
+<h2 id="13-qué-tenemos-que-tener-en-esta-fase"><a class="header" href="#13-qué-tenemos-que-tener-en-esta-fase"><a name="entregaFase1"> 1.3. Qué tenemos que tener en esta fase </a></a></h2>
+<ul>
+<li>Programa de Scratch con los tres personajes anteriores y el escenario. Todos los elementos deben ser <strong>personalizados</strong>.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="2-moviendo-los-personajes"><a class="header" href="#2-moviendo-los-personajes">2. Moviendo los personajes</a></h1>
+<p>A continuación veremos cómo mover los personajes de nuestro juego. Vamos a generar el movimiento del dinosaurio, del edificio y de los obstáculos</p>
+<h2 id="21-dinosaurio"><a class="header" href="#21-dinosaurio">2.1. Dinosaurio</a></h2>
+<p>El dinosaurio solo se moverá para saltar (al pulsar el espacio o cualquier otra que elijamos). Para implementar este movimiento podemos usar instrucciones para cambiar el valor de la coordenada y:</p>
+<center>
+<figure>
+<img src="img/InstruccionesSalto.png"/>
+<figcaption>Instrucciones que se pueden utilizar para simular el salto del dinosaurio</figcaption>
+</figure>
+</center>
+<p>Estas instrucciones se podrán combinar con algún bucle y con la pieza de esperar para conseguir el efecto de salto que queramos. Por ejemplo, podría ser parecido al que se ve en el siguiente vídeo:</p>
+<center>
+<video width="420" height="320" controls>
+  <source src="video/SaltoDinosaurio.mp4" type="video/mp4">
+</video>
+</center>
+<p>Como se puede observar, el dinosaurio continuamente está moviendo la pata. Esto se consigue mediante el cambio de disfraces que simulan el movimiento.</p>
+<h2 id="22-edificio"><a class="header" href="#22-edificio">2.2. Edificio</a></h2>
+<p>El edificio deberá moverse teniendo en cuenta:</p>
+<ul>
+<li>El movimiento será horizontal</li>
+<li>Empezará en la esquina inferior derecha e irá desplazándose hacia la izquierda.</li>
+<li>Si toca el borde, deberá volver a la posición inicial</li>
+</ul>
+<p>Puedes usar las instrucciones que quieras para implementar el movimiento y ajustarlo a la velocidad que prefieras. Debe ser algo similar a lo que se muestra en el vídeo:</p>
+<center>
+<video width="420" height="320" controls>
+  <source src="video/MovimientoEdificio.mp4" type="video/mp4">
+</video>
+</center>
+<p><strong>Parte voluntaria</strong></p>
+<p>Utiliza dos teclas para poder incrementar/decrementar la velocidad de movimiento del edificio durante el juego.</p>
+<h2 id="23-obstáculos"><a class="header" href="#23-obstáculos">2.3. Obstáculos</a></h2>
+<p>El obstáculo que pongamos (en nuestro ejemplo, un murciélago) se moverá con las siguientes consideraciones:</p>
+<ul>
+<li>El movimiento será horizontal</li>
+<li>La altura deberá ajustarse al salto del dinosaurio para que pueda colisionar con él</li>
+<li>Empezará en la parte derecha y se desplazará hacia la izquierda</li>
+<li>Si toca el borde, deberá volver a la posición inicial</li>
+</ul>
+<p>Debemos hacer que este personaje aparezca cada 5 segundos. Algunas de las instrucciones que podemos utilizar para conseguir este efecto son:</p>
+<center>
+<figure>
+<img src="img/MovimientoObst.png"/>
+<figcaption>Instrucciones que se pueden utilizar para conseguir que el obstáculo se muestre cada 5 segundos</figcaption>
+</figure>
+</center><div style="break-before: page; page-break-before: always;"></div><h1 id="3-implementando-el-juego"><a class="header" href="#3-implementando-el-juego">3. Implementando el juego</a></h1>
+<p>Una vez que tenemos todos los personajes, el siguiente paso es implementarlo. Para ello, tendremos en cuenta que el juego termina cuando el dinosaurio choca con cualquiera de los enemigos (el edificio o los obstáculos que hayamos creado).</p>
+<p>Vamos a ver qué debe hacer nuestro programa y qué instrucciones podemos utilizar para conseguirlo</p>
+<h1 id="31-colisión-de-los-personajes"><a class="header" href="#31-colisión-de-los-personajes">3.1. Colisión de los personajes</a></h1>
+<p>La siguiente instrucción permite saber si estamos chocando con algún otro personaje:</p>
+<center>
+<figure>
+<img src="img/Colision.png"/>
+<figcaption>Instrucción para controlar la colisión </figcaption>
+</figure>
+</center>
+<p>Tenemos varias alternativas: que el dinosaurio sea el que compruebe si ha chocado con sus enemigos o que sean los enemigos los que comprueben si están chocando con el dinosaurio. Puedes utilizar la opción que prefieras.</p>
+<h1 id="32-finalizando-el-juego"><a class="header" href="#32-finalizando-el-juego">3.2. Finalizando el juego</a></h1>
+<p>Cuando se haya detectado una colisión, el juego debe finalizar, mostrando un fondo de <em><strong>game over</strong></em>.</p>
+<p><strong>Voluntario: en el fondo aparecerá un botón para volver a comenzar el juego</strong></p>
+<h1 id="33-variable-puntos"><a class="header" href="#33-variable-puntos">3.3. Variable puntos</a></h1>
+<p>Crearemos una variable puntos para ir registrando el avance del juego:</p>
+<ul>
+<li>Tendrá valor cero al iniciar</li>
+<li>Se irá actualizando conforme juguemos. Puedes utilizar la forma que quieras para modificar el valor de esta variable, pero debe ir cambiando continuamente.</li>
+</ul>
+<h1 id="34-mejoras-voluntario"><a class="header" href="#34-mejoras-voluntario">3.4. Mejoras (voluntario)</a></h1>
+<p>En este manual se ha explicado cómo crear el juego básico del dinosaurio. Implementa las mejoras que quieras para mejorarlo. Aquí tienes algunas sugerencias:</p>
+<ul>
+<li>Ir modificando la velocidad de los obstáculos conforme avanza el tiempo y la puntuación sea mayor</li>
+<li>Crear algún personaje que permita dar inmunidad (a modo de vida extra).</li>
+<li>Pantallas de inicio/fin personalizadas</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
